@@ -33,22 +33,23 @@ export function HeroGalleryScroll() {
         ))}
       </BentoGrid>
 
-      <ContainerScale className="relative z-10 text-center">
+      <ContainerScale className="relative z-10 text-center md:pt-32">
         <motion.h1
           className="max-w-xl text-5xl tracking-tighter text-primary text-backdrop-invert"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          X100
+          Francesc Jimenez
         </motion.h1>
         <motion.p
           className="my-6 max-w-xl text-primary "
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 35 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-           A Next.js portfolio for professional photographers, designed to flawlessly showcase powerful visual stories.        </motion.p>
+           Welcome to my vision of the world, a journey through light, landscapes, and fleeting moments.
+        </motion.p>
         <div className="flex items-center flex-col md:flex-row justify-center gap-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

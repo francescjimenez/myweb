@@ -6,6 +6,7 @@ import { ThemeToggle } from "./theme-toggle"
 import { motion } from "framer-motion"
 import Logo from "./logo"
 import useDisableRightClick from './useDisableRightClick'; // Adjust the import path as necessary
+import Image from 'next/image'
 
 export default function Footer() {
   useDisableRightClick(); // Apply the hook to disable right-click on images
@@ -26,10 +27,9 @@ export default function Footer() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <div className="flex items-center gap-3 mb-4">
-            {/* <Logo /> */}
+          <div className="flex items-center gap-3 mb-2">
             <Link href="/" className="font-old-london text-2xl font-bold inline-block text-foreground">
-              X100
+              <Logo size={32}/>
             </Link>
           </div>
           <p className="text-muted-foreground max-w-md mb-6 max-w-xs">
@@ -38,7 +38,7 @@ export default function Footer() {
           </p>
           <div className="flex space-x-4 items-center">
             <motion.a
-              href="https://github.com/lilxyzz"
+              href="https://instagram.com/francescjimenez"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground hover:text-primary transition-colors"
@@ -49,7 +49,7 @@ export default function Footer() {
               <span className="sr-only">Instagram</span>
             </motion.a>
             <motion.a
-              href="https://github.com/lilxyzz"
+              href="https://twitter.com/francescjimenez"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground hover:text-primary transition-colors"
@@ -60,18 +60,7 @@ export default function Footer() {
               <span className="sr-only">Twitter</span>
             </motion.a>
             <motion.a
-              href="https://github.com/lilxyzz"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-foreground hover:text-primary transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Facebook size={20} />
-              <span className="sr-only">Facebook</span>
-            </motion.a>
-              <motion.a
-                href="https://github.com/lilxyzz"
+                href="https://youtube.com/desendoll"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-foreground hover:text-primary transition-colors"
@@ -81,8 +70,8 @@ export default function Footer() {
                 <Youtube size={20} />
                 <span className="sr-only">Youtube</span>
             </motion.a>
-             {/* <motion.a
-                href="https://linkedin.com"
+            <motion.a
+                href="https://linkedin.com/in/francescjimenez"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-foreground hover:text-primary transition-colors"
@@ -91,18 +80,7 @@ export default function Footer() {
               >
                 <Linkedin size={20} />
                 <span className="sr-only">Linkedin</span>
-            </motion.a> */}
-             <motion.a
-                href="https://github.com/lilxyzz"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground hover:text-primary transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Github size={20} />
-                <span className="sr-only">Github</span>
-              </motion.a> 
+            </motion.a>
             <ThemeToggle />
           </div>
         </motion.div>
@@ -142,10 +120,10 @@ export default function Footer() {
           <h3 className="section-title text-2xl mb-4">Contact</h3>
           <ul className="space-y-2 text-muted-foreground">
             <h4 className="text-primary">Email</h4>
-            <a href="mailto:contact@x100.com"><li>contact@x100.com</li></a> 
+            <a href="mailto:contactar@francescjimenez.com"><li>contactar@francescjimenez.com</li></a> 
             {/* <li>Phone: +1 (555) 123-4567</li> */}
             <h4 className="text-primary">Location</h4>
-            <li>39.1569° S, 175.6321° E</li>
+            <li>Build with <Image src="/assets/heart.png" alt="❤️" width={22} height={22} className="inline"/> from Barcelona</li>
           </ul>
         </motion.div>
       </div>
@@ -158,8 +136,7 @@ export default function Footer() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          © {new Date().getFullYear()} <Link href="https://travislord.xyz" target="_blank"
-                rel="noopener noreferrer" className="hover:text-primary transition-colors">TL</Link>. All rights reserved. 🕸️
+          © {new Date().getFullYear()} All rights reserved.
         </motion.p>
       </div>
     </motion.footer>

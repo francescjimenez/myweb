@@ -1,10 +1,4 @@
-# Next.js Photography Portfolio | X100
-
-![X100 - Next.js Photography Portfolio](https://github.com/lilxyzz/x100/blob/main/public/X100-cover.webp)
-
-A modern, responsive photography portfolio built with Next.js 15+, featuring dynamic collections, smooth animations, and a beautiful dark/light theme.
-
-I created this theme as I’ve been considering purchasing a camera recently, and it aligned with some ideas I wanted to explore. I may contribute further updates in the future, but can’t make any guarantees at this stage. Enjoy 🤙
+# Francesc Jimenez Photography Portfolio
 
 ## 🌟 Features
 
@@ -14,7 +8,6 @@ I created this theme as I’ve been considering purchasing a camera recently, an
 - **Modern Animations**: Powered by Framer Motion for smooth interactions
 
 ## 🚀 Tech Stack
-
 - **Framework**: Next.js 15 (App Router)
 - **React**: 19
 - **Styling**: Tailwind CSS
@@ -25,26 +18,8 @@ I created this theme as I’ve been considering purchasing a camera recently, an
 
 ## 🛠️ Setup Instructions
 
-1. **Clone the repository**
-
-   ```bash
-   git clone [https://github.com/lilxyzz/x100]
-   cd x100
-   ```
-
-2. **Install dependencies**
-
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
-
-3. **Run the development server**
    ```bash
    npm run dev
-   # or
-   yarn dev
    ```
 
 Open http://localhost:3000 with your browser to see the result.
@@ -52,13 +27,6 @@ Open http://localhost:3000 with your browser to see the result.
 ## 📸 Photo Collections
 
 The portfolio is organized into collections:
-
-- Urban Portraits
-- Tokyo
-- New Zealand
-- Iceland
-- Bali
-- Morocco
 
 Each collection should be placed in its corresponding folder in the `public` directory. Update image Validation /scripts/validate-images.ts
 
@@ -91,11 +59,3 @@ The portfolio is fully responsive with breakpoints:
 - Mobile: < 768px
 - Tablet: 768px - 1024px
 - Desktop: > 1024px
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.

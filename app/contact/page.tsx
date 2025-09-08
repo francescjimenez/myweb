@@ -19,7 +19,7 @@ export default function ContactPage() {
       <section className="relative h-[50vh] w-full">
         <Image
           src="/new zealand/new-zealand-17.jpg?height=800&width=1920"
-          alt="Contact X100"
+          alt="Contact Francesc Jimenez"
           fill
           priority
           className="object-cover"
@@ -68,12 +68,7 @@ export default function ContactPage() {
                 {
                   icon: <Mail className="text-primary mt-1" size={20} />,
                   title: "Email",
-                  content: "contact@x100.com",
-                },
-                {
-                  icon: <MapPin className="text-primary mt-1" size={20} />,
-                  title: "Location",
-                  content: "31.9514° S, 115.8617° E",
+                  content: "contactar@francescjimenez.com",
                 },
               ].map((item) => (
                 <motion.div
@@ -91,37 +86,6 @@ export default function ContactPage() {
                   </div>
                 </motion.div>
               ))}
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-            >
-              <h3 className="text-xl mb-4">Keep Up To Date</h3>
-              <div className="flex flex-wrap gap-1">
-                {[
-                  { icon: <Instagram size={26} />, label: "Instagram", href: "https://github.com/lilxyzz" },
-                  { icon: <Twitter size={26} />, label: "Twitter", href: "https://github.com/lilxyzz" },
-                  { icon: <Facebook size={26} />, label: "Facebook", href: "https://github.com/lilxyzz" },
-                  { icon: <Youtube size={26} />, label: "Youtube", href: "https://github.com/lilxyzz" },
-                  // { icon: <Linkedin size={20} />, label: "Linkedin", href: "https://linkedin.com" },
-                  { icon: <Github size={26} />, label: "Github", href: "https://github.com/lilxyzz" },
-                ].map((item) => (
-                  <motion.a
-                    key={item.label}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 bg-primary-secondary rounded-full transition-colors"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {item.icon}
-                    {/* <span className="text-primary-foreground dark:text-primary-foreground">{item.label}</span> */}
-                  </motion.a>
-                ))}
-              </div>
             </motion.div>
           </motion.div>
 
