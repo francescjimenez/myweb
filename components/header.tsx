@@ -76,7 +76,7 @@ export default function Header() {
 
           {/* Desktop Navigation - Centered */}
           <nav className={`hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-8 items-center p-3 text-2xl  duration-300w-10 h-10 flex items-center justify-center rounded-full bg-background/90 text-primary transition-colors
-            ${isScrolled ? "glass-effect" : "" }`}>
+            ${isScrolled ? "" : "" }`}>
             {navigation.map((item) => (
               <Link
                 key={item.name}

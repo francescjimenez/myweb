@@ -22,7 +22,7 @@ export function HeroGalleryScroll() {
         {IMAGES.map((imageUrl, index) => (
           <BentoCell
             key={index}
-            className="overflow-hidden rounded-3xl shadow-xl"
+            className="overflow-hidden rounded-lg shadow-xl"
           >
             <img
               className="size-full object-cover object-center"
@@ -82,7 +82,7 @@ export function HeroDemo1() {
         {IMAGES.map((imageUrl, index) => (
           <BentoCell
             key={index}
-            className="overflow-hidden rounded-3xl shadow-xl"
+            className="overflow-hidden rounded-lg shadow-xl"
           >
             <img
               className="size-full object-cover object-center"
@@ -127,7 +127,7 @@ export function HeroDemo2() {
         {IMAGES.filter((_, index) => index <= 3).map((imageUrl, index) => (
           <BentoCell
             key={index}
-            className="overflow-hidden rounded-3xl shadow-xl"
+            className="overflow-hidden rounded-lg shadow-xl"
           >
             <img
               className="size-full object-cover object-center"
@@ -173,7 +173,7 @@ export function HeroDemo3() {
         {IMAGES.filter((_, index) => index <= 2).map((imageUrl, index) => (
           <BentoCell
             key={index}
-            className="overflow-hidden rounded-3xl shadow-xl"
+            className="overflow-hidden rounded-lg shadow-xl"
           >
             <img
               className="size-full object-cover object-center"
