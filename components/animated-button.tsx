@@ -75,7 +75,7 @@ export default function AnimatedButton({
   }
 
   return (
-    <Link href={href} className={`group ${baseStyles} ${variantStyles[variant]} ${className}`} onClick={handleClick}>
+    <Link href={href} className={`group ${baseStyles} ${variantStyles[variant]} ${className} glass-effect-button`} onClick={handleClick}>
       <span>{children}</span>
       {icon && <span className="btn-icon overflow-hidden">{icon}</span>}
     </Link>

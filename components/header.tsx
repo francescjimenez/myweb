@@ -56,9 +56,8 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-2 left-2 right-2 z-50 transition-all duration-300 header-height ${
-        isScrolled ? "bg-background backdrop-blur-md shadow-sm" : "bg-transparent"
-      } ${!isVisible ? "-translate-y-[80px]" : "translate-y-0"}`}
+      className={`fixed top-2 left-2 right-2 z-50 transition-all duration-300 header-height bg-transparent"
+       ${!isVisible ? "-translate-y-[80px]" : "translate-y-0"}`}
     >
       <div className="max-w-8xl mx-auto px-4 sm:px-6 h-full">
         <div className="flex justify-between items-center h-full">
@@ -76,7 +75,8 @@ export default function Header() {
         
 
           {/* Desktop Navigation - Centered */}
-          <nav className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-8 items-center p-3 text-2xl  duration-300w-10 h-10 flex items-center justify-center rounded-full bg-background/90 text-primary transition-colors">
+          <nav className={`hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-8 items-center p-3 text-2xl  duration-300w-10 h-10 flex items-center justify-center rounded-full bg-background/90 text-primary transition-colors
+            ${isScrolled ? "glass-effect" : "" }`}>
             {navigation.map((item) => (
               <Link
                 key={item.name}

@@ -55,22 +55,18 @@ export default function AboutPage() {
           >
             <h2 className="text-3xl md:text-4xl mb-6">The Journey</h2>
             <p className="text-primary mb-4">
-              I'm a professional photographer with over 10 years of experience capturing moments around the world. My
-              passion for photography began during a backpacking trip through Southeast Asia, where I discovered the
-              power of visual storytelling.
+              For more than a decade, I've worked in technology as a software engineer, but every journey I’ve taken has always included a camera by my side. From the skyscrapers of New York to remote trails in Peru, from diving into Indonesia’s oceans to meeting tribes and wildlife in Africa, my camera has been my way of experiencing the world.
             </p>
             <p className="text-primary mb-4">
-              Since then, I've traveled to over 30 countries, documenting landscapes, cultures, and urban environments.
-              My work has been featured in publications like National Geographic, Condé Nast Traveler, and Vogue.
+              What truly captivates me is the landscape and the art of composition. I’m drawn to slow, intentional photography: waiting for the sun to rise at the exact spot I planned, capturing the Milky Way as night falls, or shaping light with a flash to reveal hidden details.
             </p>
-            <p className="text-primary mb-6">
-              I believe that photography has the power to connect people across cultures and inspire a deeper
-              appreciation for our world. Each image I create aims to tell a story and evoke emotion.
+            <p className="text-primary mb-8">
+              Today, by sharing my portfolio, I want to go further, to connect with people, cultures, and emotions. Each image is more than a photograph; it is a story, an invitation to see the world through my lens.
             </p>
             <div className="flex flex-wrap gap-4">
               <div className="flex items-center gap-2">
                 <Camera size={20} className="text-primary" />
-                <span className="text-primary">Fujifilm x100vi & Leica M10</span>
+                <span className="text-primary">Sony <span>&#945;</span>7 IV</span>
               </div>
               <div className="flex items-center gap-2">
                 <Globe size={20} className="text-primary" />
@@ -104,19 +100,19 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                title: "Authenticity",
+                title: "Patience",
                 description:
-                  "I believe in capturing authentic moments that tell real stories. My approach focuses on finding beauty in truth rather than manufacturing perfect scenes.",
+                  "Great photography is never rushed. I embrace the wait for the perfect light, the stillness before the stars appear, and the silence that reveals the essence of a place.",
               },
               {
                 title: "Connection",
                 description:
-                  "Photography creates connections - between viewer and subject, between cultures, and between people. I strive to foster these connections through my work.",
+                  "Photography is more than landscapes; it's about people, cultures, and emotions. Each frame is a bridge that connects us to one another and to the world around us.",
               },
               {
-                title: "Respect",
+                title: "Wonder",
                 description:
-                  "I approach every environment and subject with deep respect. This means respecting cultures, natural spaces, and the stories I'm privileged to capture.",
+                  "I approach landscapes and cultures with a sense of awe and curiosity. Each frame is a celebration of the extraordinary beauty that surrounds us and a reminder to look closer.",
               },
             ].map((item, index) => (
               <motion.div
@@ -136,7 +132,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Timeline */}
+      {/* Timeline
       <section className="py-16 px-4 md:px-8 max-w-5xl mx-auto">
         <motion.h2
           className="text-3xl md:text-4xl mb-12 text-center"
@@ -199,7 +195,7 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
-
+      */}
       {/* Call to Action */}
       <section className="min-w-[90%] justify-self-center mr-4 ml-4 py-20 my-20 px-4 md:px-8 rounded-3xl border-[1px] border-border">
         <motion.div

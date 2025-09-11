@@ -31,16 +31,15 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl mb-6">The Art of Visual Storytelling</h2>
+            <h2 className="text-3xl md:text-4xl mb-6">The Art of Seeing the World</h2>
             <p className="text-primary-secondary mb-6">
-              Every photograph tells a story, captures an emotion, and preserves a moment in time. My work focuses on
-              finding beauty in both grand landscapes and subtle details.
+              Each photograph is more than an image, it's a story, an emotion, a moment held still in time. My work seeks beauty in sweeping landscapes and in the smallest, most fleeting details.
             </p>
             <p className="text-primary-secondary mb-8">
-              Explore my collections from around the world, each with its own unique perspective and narrative.
+              Travel through my collections from across the globe, where every frame offers a unique perspective and an invitation to wonder.
             </p>
             <AnimatedButton href="/about" variant="outline" icon={<ArrowRight size={16} />}>
-              Learn More About The Journey
+              Learn More About Me
             </AnimatedButton>
           </motion.div>
           <motion.div

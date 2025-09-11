@@ -38,7 +38,7 @@ export default function Footer() {
           </p>
           <div className="flex space-x-4 items-center">
             <motion.a
-              href="https://instagram.com/francescjimenez"
+              href="https://instagram.com/desendoll"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground hover:text-primary transition-colors"
