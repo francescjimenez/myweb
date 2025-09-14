@@ -2,17 +2,18 @@
   "name": "francescjimenez.com",
   "version": "1.0.0",
   "private": true,
-  "author": "Francesc Jimenez <hi@francescjimenez.com>",
+  "author": "Francesc Jimenez <contactar@francescjimenez.com>",
   "scripts": {
-    "validate-images": "ts-node scripts/validate-images.ts",
-    "dev": "npm run validate-images --dry-run && next dev",
-    "build": "npm run validate-images --dry-run && next build",
+    "generate-galleries": "ts-node scripts/generate-galleries.ts",
+    "dev": "npm run generate-galleries && next dev",
+    "build": "npm run generate-galleries && next build",
     "start": "next start",
     "lint": "next lint",
-    "predev": "ts-node scripts/validate-images.ts",
-    "prebuild": "ts-node scripts/validate-images.ts"
+    "predev": "ts-node scripts/generate-galleries.ts",
+    "prebuild": "ts-node scripts/generate-galleries.ts"
   },
   "dependencies": {
+    "exif-parser": "0.1.12",
     "@emotion/is-prop-valid": "1.4.0",
     "@formspree/react": "3.0.0",
     "@hookform/resolvers": "^3.9.1",
