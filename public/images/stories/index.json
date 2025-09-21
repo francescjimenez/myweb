@@ -1,0 +1,80 @@
+[
+  {
+    "id": "babrcelona",
+    "title": "Barcelona",
+    "tags": [
+      "urban",
+      "portraits",
+      "city life",
+      "diversity"
+    ],
+    "slug": "/stories/barcellona/",
+    "coverImage": "cover.jpg",
+    "numberOfImages": 20
+  },
+  {
+    "id": "indonesia",
+    "title": "Indonesia",
+    "tags": [
+      "urban",
+      "portraits",
+      "city life",
+      "diversity"
+    ],
+    "slug": "/stories/indonesia/",
+    "coverImage": "cover.jpg",
+    "numberOfImages": 20
+  },
+  {
+    "id": "new_york",
+    "title": "New york",
+    "tags": [
+      "urban",
+      "portraits",
+      "city life",
+      "diversity"
+    ],
+    "slug": "/stories/new_york/",
+    "coverImage": "cover.jpg",
+    "numberOfImages": 20
+  },
+  {
+    "id": "peru",
+    "title": "Peru",
+    "tags": [
+      "urban",
+      "portraits",
+      "city life",
+      "diversity"
+    ],
+    "slug": "/stories/peru/",
+    "coverImage": "cover.jpg",
+    "numberOfImages": 20
+  },
+  {
+    "id": "roma",
+    "title": "Roma",
+    "tags": [
+      "urban",
+      "portraits",
+      "city life",
+      "diversity"
+    ],
+    "slug": "/stories/roma/",
+    "coverImage": "cover.jpg",
+    "numberOfImages": 20
+  },
+  {
+    "id": "tanzania",
+    "title": "Tanzania",
+    "tags": [
+      "urban",
+      "portraits",
+      "city life",
+      "diversity"
+    ],
+    "slug": "/stories/tanzania/",
+    "coverImage": "cover.jpg",
+    "numberOfImages": 20
+  }
+]

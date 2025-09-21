@@ -1,0 +1,38 @@
+{
+  "id": "babrcelona",
+  "order": "2021",
+  "title": "Barcelona",
+  "subtitle": "Barcelona 2",
+  "description": "A collection of urban portraits capturing the essence of city life through diverse faces and expressions.",
+  "tags": [
+    "urban",
+    "portraits",
+    "city life",
+    "diversity"
+  ],
+  "slug": "/stories/barcellona/",
+  "numberOfImages": 20,
+  "coverImage": "cover.jpg",
+  "imageFiles": [
+    "babrcelona__MG_9536___copia__10_.jpg",
+    "babrcelona__MG_9536___copia__11_.jpg",
+    "babrcelona__MG_9536___copia__12_.jpg",
+    "babrcelona__MG_9536___copia__13_.jpg",
+    "babrcelona__MG_9536___copia__14_.jpg",
+    "babrcelona__MG_9536___copia__15_.jpg",
+    "babrcelona__MG_9536___copia__16_.jpg",
+    "babrcelona__MG_9536___copia__17_.jpg",
+    "babrcelona__MG_9536___copia__18_.jpg",
+    "babrcelona__MG_9536___copia__19_.jpg",
+    "babrcelona__MG_9536___copia__2_.jpg",
+    "babrcelona__MG_9536___copia__3_.jpg",
+    "babrcelona__MG_9536___copia__4_.jpg",
+    "babrcelona__MG_9536___copia__5_.jpg",
+    "babrcelona__MG_9536___copia__6_.jpg",
+    "babrcelona__MG_9536___copia__7_.jpg",
+    "babrcelona__MG_9536___copia__8_.jpg",
+    "babrcelona__MG_9536___copia__9_.jpg",
+    "babrcelona__MG_9536___copia.jpg",
+    "babrcelona__MG_9536.jpg"
+  ]
+}

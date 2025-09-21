@@ -125,23 +125,59 @@ function generateGallery() {
 
   Object.values(imageList).forEach((stories: any) => {
 
-    // check if in public/images/stories the folder exists, if not create it, and if exist clean it
     const outputDir = path.join(__dirname, '..', 'public', 'images', 'stories', stories.info.id);
     if (!fs.existsSync(outputDir)) {
       fs.mkdirSync(outputDir, { recursive: true });
     } else {
-      // Clean the directory
       fs.readdirSync(outputDir).forEach((file: any) => {
         fs.unlinkSync(path.join(outputDir, file));
       });
     }
 
-    // stories.info
+    const coverFileName = path.basename(stories.cover);
+    const coverDestPath = path.join(outputDir, coverFileName);
+    fs.copyFileSync(stories.cover, coverDestPath);
 
-    // stories.images
-    // stories.cover
+    stories.images.forEach((image: any) => {
+      let imageFileName = path.basename(image.path);
+      imageFileName = imageFileName.replace(/[^a-zA-Z0-9._]/g, '_');
+      const prefixedFileName = `${stories.info.id}_${imageFileName}`;
+      const imageDestPath = path.join(outputDir, prefixedFileName);
+      fs.copyFileSync(image.path, imageDestPath);
+    });
+
+    const infoDestPath = path.join(outputDir, '_info.json');
+    // extend the info file with the number of images and the cover image name and the list of image names
+    stories.info.numberOfImages = stories.images.length;
+    stories.info.coverImage = coverFileName;
+
+    stories.info.imageFiles = stories.images.map((img: any) => {
+      let imageFileName = path.basename(img.path);
+      imageFileName = imageFileName.replace(/[^a-zA-Z0-9._]/g, '_');
+      return `${stories.info.id}_${imageFileName}`;
+    });
+
+    fs.writeFileSync(infoDestPath, JSON.stringify(stories.info, null, 2));
+
   });
 
+  const galleriesIndex = Object.values(imageList).map((stories: any) => ({
+    id: stories.info.id,
+    title: stories.info.title,
+    tags: stories.info.tags,
+    slug: stories.info.slug,
+    coverImage: stories.info.coverImage,
+    numberOfImages: stories.info.numberOfImages,
+  }));
+  const indexPath = path.join(__dirname, '..', 'public', 'images', 'stories', 'index.json');
+  fs.writeFileSync(indexPath, JSON.stringify(galleriesIndex, null, 2));
+  console.log(' ');
+  console.log(' ✅ Gallery generation completed successfully.');
+  console.log(' ');
+  console.log('...........................');
+  console.log('     🎉 All done! 🎉');
+  console.log('...........................');
+  console.log(' ');
 }
 
 // Run the validation

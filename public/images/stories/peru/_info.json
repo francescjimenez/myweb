@@ -1,0 +1,38 @@
+{
+  "id": "peru",
+  "order": "2021",
+  "title": "Peru",
+  "subtitle": "Urban Portraits",
+  "description": "A collection of urban portraits capturing the essence of city life through diverse faces and expressions.",
+  "tags": [
+    "urban",
+    "portraits",
+    "city life",
+    "diversity"
+  ],
+  "slug": "/stories/peru/",
+  "numberOfImages": 20,
+  "coverImage": "cover.jpg",
+  "imageFiles": [
+    "peru__MG_9536___copia__10_.jpg",
+    "peru__MG_9536___copia__11_.jpg",
+    "peru__MG_9536___copia__12_.jpg",
+    "peru__MG_9536___copia__13_.jpg",
+    "peru__MG_9536___copia__14_.jpg",
+    "peru__MG_9536___copia__15_.jpg",
+    "peru__MG_9536___copia__16_.jpg",
+    "peru__MG_9536___copia__17_.jpg",
+    "peru__MG_9536___copia__18_.jpg",
+    "peru__MG_9536___copia__19_.jpg",
+    "peru__MG_9536___copia__2_.jpg",
+    "peru__MG_9536___copia__3_.jpg",
+    "peru__MG_9536___copia__4_.jpg",
+    "peru__MG_9536___copia__5_.jpg",
+    "peru__MG_9536___copia__6_.jpg",
+    "peru__MG_9536___copia__7_.jpg",
+    "peru__MG_9536___copia__8_.jpg",
+    "peru__MG_9536___copia__9_.jpg",
+    "peru__MG_9536___copia.jpg",
+    "peru__MG_9536.jpg"
+  ]
+}

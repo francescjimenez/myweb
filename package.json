@@ -4,7 +4,7 @@
   "private": true,
   "author": "Francesc Jimenez <contactar@francescjimenez.com>",
   "scripts": {
-    "generate-galleries": "ts-node scripts/generate-galleries.ts",
+    "generate": "ts-node scripts/generate-galleries.ts",
     "dev": "npm run generate-galleries && next dev",
     "build": "npm run generate-galleries && next build",
     "start": "next start",
