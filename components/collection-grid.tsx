@@ -73,7 +73,7 @@ export default function CollectionGrid() {
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
               className="w-full"
             >
-              <Link href={`/collections/${group[0].slug}`} className="group block" onClick={playShutterSound}>
+              <Link href={`/stories/${group[0].slug}`} className="group block" onClick={playShutterSound}>
                 <div className="relative overflow-hidden bg-black rounded-lg shadow-lg">
                   {/* Image container with overlay */}
                   <div className="relative h-[400px] md:h-[500px] w-full overflow-hidden">
@@ -133,7 +133,7 @@ export default function CollectionGrid() {
                   whileHover={{ y: -5, transition: { duration: 0.2 } }}
                   className="h-full"
                 >
-                  <Link href={`/collections/${collection.slug}`} className="group block h-full" onClick={playShutterSound}>
+                  <Link href={`/stories/${collection.slug}`} className="group block h-full" onClick={playShutterSound}>
                     <div className="relative h-full overflow-hidden bg-black rounded-lg shadow-md">
                       {/* Image container with overlay */}
                       <div className="relative h-80 w-full overflow-hidden">

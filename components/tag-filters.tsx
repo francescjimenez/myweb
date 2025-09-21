@@ -1,7 +1,8 @@
 "use client"
 
 import { useRouter, useSearchParams } from "next/navigation"
-import { getAllTags } from "@/lib/collections"
+import { getAllTags } from "../lib/stories"
+
 import { motion } from "framer-motion"
 
 export default function TagFilters() {
@@ -44,7 +45,7 @@ export default function TagFilters() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          {tag}
+          {tag.charAt(0).toUpperCase() + tag.slice(1)}
         </motion.button>
       ))}
     </motion.div>

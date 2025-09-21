@@ -6,13 +6,16 @@ import AnimatedButton from "@/components/animated-button"
 import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { getImages } from "@/lib/imgLib"
+
+const images = getImages();
 
 const IMAGES = [
-  "/Morocco/cover.webp",
-  "/new zealand/cover.jpg",
-  "/Tokyo/cover.jpg",
-  "/Bali/cover.jpeg",
-  "/Iceland/cover.jpg",
+  images['home_main1'],
+  images['home_main2'],
+  images['home_main3'],
+  images['home_main4'],
+  images['home_main5'],
 ]
 
 export function HeroGalleryScroll() {
@@ -56,8 +59,8 @@ export function HeroGalleryScroll() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            <AnimatedButton href="/showcase" variant="outline" icon={<ArrowRight size={16} />}>
-              Showcase
+            <AnimatedButton href="/stories" variant="outline" icon={<ArrowRight size={16} />}>
+              Stories
             </AnimatedButton>
           </motion.div>
           <motion.div

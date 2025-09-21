@@ -5,12 +5,10 @@
   "author": "Francesc Jimenez <contactar@francescjimenez.com>",
   "scripts": {
     "generate": "ts-node scripts/generate-galleries.ts",
-    "dev": "npm run generate-galleries && next dev",
-    "build": "npm run generate-galleries && next build",
+    "dev": " next dev",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "predev": "ts-node scripts/generate-galleries.ts",
-    "prebuild": "ts-node scripts/generate-galleries.ts"
+    "lint": "next lint"
   },
   "dependencies": {
     "@vercel/speed-insights": "1.2.0",

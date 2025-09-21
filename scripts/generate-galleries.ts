@@ -169,7 +169,7 @@ function generateGallery() {
     coverImage: stories.info.coverImage,
     numberOfImages: stories.info.numberOfImages,
   }));
-  const indexPath = path.join(__dirname, '..', 'public', 'images', 'stories', 'index.json');
+  const indexPath = path.join(__dirname, '..', 'app', 'api', 'stories', 'index.json');
   fs.writeFileSync(indexPath, JSON.stringify(galleriesIndex, null, 2));
   console.log(' ');
   console.log(' ✅ Gallery generation completed successfully.');

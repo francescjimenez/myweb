@@ -180,4 +180,3 @@ const collections: Collection[] = [
 export const getAllCollections = (): Collection[] => collections
 export const getFeaturedCollections = (): Collection[] => collections.filter(collection => collection.featured)
 export const getCollection = (slug: string): Collection | undefined => collections.find(collection => collection.slug === slug)
-export const getAllTags = (): string[] => Array.from(new Set(collections.flatMap(collection => collection.tags)))

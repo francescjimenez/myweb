@@ -9,8 +9,10 @@ import Image from "next/image"
 import { HeroGalleryScroll } from "@/components/hero-gallery-scroll"
 import { DynamicFrame } from "@/components/dynamic-frame"
 import { LayoutGridDemo } from "@/components/layout-image-grid"
+import { getImages } from "@/lib/imgLib"
 
 export default function Home() {
+  const IMG = getImages();
   return (
     <div className="flex flex-col min-h-screen">
       {/* Spacer for header */}
@@ -50,7 +52,7 @@ export default function Home() {
             viewport={{ once: true }}
           >
             <Image
-              src="/Morocco/morocco-9.webp?height=1000&width=800"
+              src={IMG['home_main']}
               alt="Photographer at work"
               fill
               className="object-cover"
@@ -61,9 +63,6 @@ export default function Home() {
 
       {/* Dynamic Frame Section 
       <DynamicFrame />*/}
-
-      {/* Layout Grid Section */}
-      <LayoutGridDemo />
 
        {/* Call to Action */}
       <section className="z-10 min-w-[90%] justify-self-center mr-4 ml-4 py-20 lg:my-20 sm:mt-0 sm:mb-20 px-4 md:px-8 px-2 rounded-3xl border-[1px] border-border">
@@ -94,7 +93,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-primary text-3xl md:text-4xl mb-4">Featured Collections</h2>
+            <h2 className="text-primary text-3xl md:text-4xl mb-4">Stories</h2>
             <p className="text-primary max-w-2xl mx-auto">
               Explore some of my most popular photography collections from around the world
             </p>
@@ -107,8 +106,8 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <AnimatedButton href="/showcase" variant="primary" icon={<ArrowRight size={18} />}>
-              View All Collections
+            <AnimatedButton href="/stories" variant="primary" icon={<ArrowRight size={18} />}>
+              View Stories
             </AnimatedButton>
           </motion.div>
         </div>
