@@ -2,12 +2,36 @@ const fs = require('fs');
 const path = require('path');
 const exif = require('exif-parser');
 
+type GalleryImage = {
+  path: string;
+  meta: {
+    make: string;
+    camera: string;
+    lens: string;
+    iso: string;
+    focalLength: string;
+    aperture: string;
+    shutterSpeed: string;
+  };
+};
+
+const imageList: Record<string, { info?: string, cover?: string, images: GalleryImage[] }> = {};
 
 function getExifData(imagePath: string) {
   const buffer = fs.readFileSync(imagePath);
   const parser = exif.create(buffer);
   const result = parser.parse();
   return result.tags; // Contains aperture, ISO, shutter speed, etc.
+}
+
+function logAndSkip(type: "error" | "warning", message: string, id: string) {
+  if (imageList[id]) {
+    delete imageList[id];
+  }
+  const icons = { error: "❌ ", warning: "⚠️ " };
+  console.error(`  ${icons[type]} ${message}`);
+  console.log(' ')
+  return;
 }
 
 function formatShutterSpeed(exposureTime: number): string {
@@ -22,90 +46,103 @@ function formatShutterSpeed(exposureTime: number): string {
 }
 
 function generateGallery() {
-  // loop though each stories forlder inside in images/stories
   const imagesDir = path.join(__dirname, '..', 'images', 'stories');
   const collections = fs.readdirSync(imagesDir).filter((file: string) => fs.statSync(path.join(imagesDir, file)).isDirectory());
 
-  console.log(`Found collections: ${collections.join(', ')}`);
+  // create a beter log introduction
+  console.log('...........................');
+  console.log('🚀 Starting gallery generation 🚀');  
+  console.log(`📚 Found: 
+        ${collections.join(', ')}`);
   console.log('...........................')
-
-  const imageList: Record<string, { info?: string, cover?: string, images: string[] }> = {};
+  console.log(' ')
 
   collections.forEach((collection: any) => {
-    console.log(`Checking collection: ${collection}`);
+    console.log(`- Checking collection: 📷 ${collection}`);
     const coverImage = `cover.jpg`;
     const infoFile = `_info.json`;
+    let collectionId = '';
     const collectionDir = path.join(imagesDir, collection);
     const files = fs.readdirSync(collectionDir);
-    imageList[collection] = { images: [] };
 
     if (files.length === 0) {
-      const warning = `No files found in collection ${collection}`;
-      console.error(`⚠️  ${warning}`);
-      process.exit(1);
+      return logAndSkip("warning", `No files found in collection ${collection}`, collection);
     }
 
     // Check if cover _info.json exists
     if (!files.includes(infoFile)) {
-      const error = `Missing _info.json in collection ${collection}`;
-      console.error(`❌ ${error}`);
-      process.exit(1);
+      return logAndSkip("error", `Missing _info.json in collection ${collection}`, collection);
     } else {
-      console.log(`✅ _info.json found in collection ${collection}`);
-      // and save the data from the json into a variable
       const infoPath = path.join(collectionDir, infoFile);
-      imageList[collection].info = JSON.parse(fs.readFileSync(infoPath, 'utf-8'));
+      const infoData = JSON.parse(fs.readFileSync(infoPath, 'utf-8'));
+      collectionId = infoData.id || collection;
+      // Initialize the collection in imageList
+      imageList[collectionId] = { images: [] };
+      imageList[collectionId].info = infoData
+      
     }
     
     // Check if cover image exists
     if (!files.includes(coverImage)) {
-      const error = `Missing cover image in collection ${collection}`;
-      console.error(`❌ ${error}`);
-      process.exit(1);
+      return logAndSkip("error", `Missing cover image in collection ${collection}`, collectionId);
     } else {
-      console.log(`✅ Cover image found in collection ${collection}`);
       const coverImagePath = path.join(collectionDir, coverImage);
-      imageList[collection].cover = coverImagePath;
+      imageList[collectionId].cover = coverImagePath;
     }
 
     // check the rest of the images, be sure that they are only images
     const imageFiles = files.filter((file: string) => file !== coverImage && /\.(jpe?g|png|gif|webp)$/i.test(file));
     if (imageFiles.length === 0) {
-      const warning = `No images found in collection ${collection}`;
-      console.error(`⚠️  ${warning}`);
-      process.exit(1);
+      return logAndSkip("warning", `No images found in collection ${collection}`, collectionId);
     } else {
       imageFiles.forEach((imageFile: string) => {
         const imagePath = path.join(collectionDir, imageFile);
-        imageList[collection].images.push(imagePath);
-
         const meta = getExifData(imagePath);
-        console.log(meta)
-        // Make // fabricant
-        // Model
-        // LensModel
-        // ISO
-        // FocalLength (mm)
-        // FNumber
-        // ExposureTime (s)
-        console.log(` Metadata for ${imageFile}:`);
-        console.log(`  - Camera: ${meta.Make || 'Unknown'} ${meta.Model || ''}`);
-        console.log(`  - Lens: ${meta.LensModel || 'Unknown'}`);
-        console.log(`  - ISO: ${meta.ISO || 'Unknown'}`);
-        console.log(`  - Focal Length: ${meta.FocalLength ? meta.FocalLength + 'mm' : 'Unknown'}`);
-        console.log(`  - Aperture: ${meta.FNumber ? 'f/' + meta.FNumber : 'Unknown'}`);
-        console.log(`  - Shutter Speed: ${meta.ExposureTime ? formatShutterSpeed(meta.ExposureTime) : 'Unknown'}`);
-        console.log('-------------------------');
-
+        
+        imageList[collectionId].images.push({
+          path: imagePath,
+          meta: {
+            make: meta.Make || 'Unknown',
+            camera: `${meta.Model || 'Unknown'}`,
+            lens: meta.LensModel || 'Unknown',
+            iso: meta.ISO || 'Unknown',
+            focalLength: meta.FocalLength ? meta.FocalLength + 'mm' : 'Unknown',
+            aperture: meta.FNumber ? 'f/' + meta.FNumber : 'Unknown',
+            shutterSpeed: meta.ExposureTime ? formatShutterSpeed(meta.ExposureTime) : 'Unknown'
+          }
+        });
       });
-      console.log(`✅ Found ${imageFiles.length} images in collection ${collection}`);
+    }
+    if (imageList[collectionId]) {
+      console.log(`  ✅ Collection ${collection} done, Found ${imageFiles.length} images
+        `);
+    }
+  });
+
+  console.log('\n 🧬 Image validation completed successfully.\n');
+  // start to move images to public/images/stories/[collection] folders
+  console.log('Generating public folders and moving images...');
+
+  Object.values(imageList).forEach((stories: any) => {
+
+    // check if in public/images/stories the folder exists, if not create it, and if exist clean it
+    const outputDir = path.join(__dirname, '..', 'public', 'images', 'stories', stories.info.id);
+    if (!fs.existsSync(outputDir)) {
+      fs.mkdirSync(outputDir, { recursive: true });
+    } else {
+      // Clean the directory
+      fs.readdirSync(outputDir).forEach((file: any) => {
+        fs.unlinkSync(path.join(outputDir, file));
+      });
     }
 
-  });
-  console.log('\nImage validation completed successfully.');
-  console.log(imageList)
-} 
+    // stories.info
 
+    // stories.images
+    // stories.cover
+  });
+
+}
 
 // Run the validation
-generateGallery()
+generateGallery();

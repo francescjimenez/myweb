@@ -13,6 +13,7 @@
     "prebuild": "ts-node scripts/generate-galleries.ts"
   },
   "dependencies": {
+    "@vercel/speed-insights": "1.2.0",
     "exif-parser": "0.1.12",
     "@emotion/is-prop-valid": "1.4.0",
     "@formspree/react": "3.0.0",
