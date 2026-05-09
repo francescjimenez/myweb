@@ -1,125 +1,58 @@
 # francescjimenez.com
 
-Portfolio personal de Francesc Jimenez.
+Código de la web personal de Francesc Jimenez: una web editorial para mostrar colecciones fotográficas, piezas visuales y páginas de presentación sin depender de un CMS.
 
-Ya no es una plantilla ni un fork operativo: la base actual está adaptada al proyecto real, con contenido centralizado y una estructura más fácil de mantener sin tocar el output visual actual.
+La idea del proyecto no es solo enseñar imágenes, sino mantener una base simple y controlable para publicar colecciones con una estructura consistente y evitar errores típicos de contenido roto antes de levantar `dev` o generar `build`.
 
-## Qué es este proyecto
+## Qué hace
 
-Sitio de portfolio construido con Next.js App Router para mostrar colecciones fotográficas, páginas editoriales y una capa de contenido simple basada en archivos locales.
+- publica colecciones fotográficas desde contenido y assets locales
+- genera páginas como Home, About, Showcase y Contact sobre la misma base visual
+- mantiene una estructura pensada para seguir iterando contenido sin pelearse con la UI
+- valida automáticamente que las imágenes esperadas existen antes de arrancar o compilar
 
-El objetivo ahora mismo es claro:
-- mantener una web visualmente cuidada
-- poder cambiar copy e imágenes sin pelearse con componentes
-- evitar deuda típica de template reciclada
+## Scripts principales
 
-## Stack
+### `npm run dev`
+Arranca el entorno local con Next.js usando webpack.
 
-- Next.js 16
-- React 19
-- Tailwind CSS 3
-- Framer Motion
-- next-themes
-- Formspree
-- React Photo Album
+Antes de levantar el servidor ejecuta una validación de imágenes para detectar colecciones incompletas o nombres de archivo incorrectos.
 
-## Scripts
+### `npm run build`
+Genera la build de producción.
 
-```bash
-npm run dev
-npm run build
-npm run lint
-npm run start
-```
+Igual que en desarrollo, primero ejecuta la validación de imágenes para evitar builds aparentemente correctas con assets rotos.
 
-Notas:
-- `npm run dev` usa `next dev --webpack`
-- antes de `dev` y `build` se ejecuta la validación de imágenes
+### `npm run lint`
+Pasa ESLint sobre el proyecto.
 
-## Estructura
+### `npm run start`
+Sirve la build de producción ya generada.
 
-```txt
-app/
-components/
-content/
-lib/
-public/
-scripts/
-```
+## Validación de imágenes
 
-### Content-first
+Este es uno de los puntos más importantes del proyecto.
 
-La parte importante del refactor es esta:
+El repo no trata las imágenes como un detalle manual “a revisar luego”. Antes de `dev` y `build`, el script `scripts/validate-images.ts` comprueba que cada colección tenga:
 
-```txt
-content/
-  about.ts
-  collections.ts
-  contact.ts
-  home.ts
-  showcase.ts
-  site.ts
-```
+- su carpeta esperada en `public/`
+- su imagen de portada
+- el número esperado de imágenes por colección
+- los formatos esperados según cada colección
 
-Aquí vive el contenido visible del sitio.
+Eso reduce bastante el riesgo de:
+- galerías incompletas
+- portadas rotas
+- nombres inconsistentes entre contenido y assets
+- subir una colección medio válida que falla ya en runtime
 
-La idea es simple:
-- el contenido no debería estar hardcodeado dentro de componentes animados
-- cambiar textos, CTAs, navegación o imágenes no debería implicar tocar layout
-- `lib/collections.ts` transforma datos; `content/collections.ts` define contenido
-
-## Desarrollo local
+## Ejecutar
 
 ```bash
 npm install
 npm run dev
 ```
 
-Abrir:
+## Nota
 
-```txt
-http://localhost:3000
-```
-
-Si ya hay otro servidor de Next levantado, puede reutilizar 3000 o saltar a otro puerto.
-
-## Build actual
-
-Estado esperado a día de hoy:
-- `npm run lint` pasa
-- `npm run build` pasa
-
-Hay un detalle pendiente no bloqueante en el script de validación de imágenes:
-- el resumen puede mostrar `Missing images: -6`
-- es un bug del contador, no un fallo real de build
-
-## Imágenes y colecciones
-
-Las colecciones salen de la definición centralizada y de los assets dentro de `public/`.
-
-Si cambias estructura o nombres de imágenes, revisa:
-
-```txt
-content/collections.ts
-scripts/validate-images.ts
-lib/collections.ts
-```
-
-## Filosofía del repo
-
-Este repo intenta evitar tres cosas:
-- parecer una demo genérica
-- mezclar contenido con presentación
-- arrastrar componentes muertos de UI por si acaso
-
-Si algo no aporta al sitio real, mejor quitarlo.
-
-## Documentación interna
-
-Para contexto técnico del refactor:
-
-```txt
-docs/architecture-review.md
-```
-
-Ahí está resumido qué se cambió, por qué y qué quedaría como siguiente paso.
+El proyecto usa `npm` y su lockfile canónico es `package-lock.json`.
