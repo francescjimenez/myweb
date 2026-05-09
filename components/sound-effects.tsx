@@ -57,29 +57,22 @@ function getOrCreateAudioElement(): HTMLAudioElement | null {
 
 // SoundEffects component that adds click listeners to the document
 export default function SoundEffects() {
-  // Track if sound is enabled
   const [soundEnabled, setSoundEnabled] = useState(true)
-  const [isMobile, setIsMobile] = useState(false)
+  const [isMobile, setIsMobile] = useState(() => isMobileDevice())
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
   useEffect(() => {
-    // Check if device is mobile on mount
-    const mobile = isMobileDevice()
-    setIsMobile(mobile)
-    
-    if (!mobile && !audioRef.current) {
-      // Use the singleton audio element
+    if (!isMobile && !audioRef.current) {
       audioRef.current = getOrCreateAudioElement()
     }
 
-    // Also listen for resize events in case of orientation changes
     const handleResize = () => {
       setIsMobile(isMobileDevice())
     }
 
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
-  }, [])
+  }, [isMobile])
 
   useEffect(() => {
     // Skip setting up listeners if on mobile
@@ -138,17 +131,20 @@ export function cleanupAudioSingleton() {
 
 // Export the hook for direct use in components
 export function useShutterSound() {
-  const [isMobile, setIsMobile] = useState(false)
-  
+  const [isMobile, setIsMobile] = useState(() => isMobileDevice())
+
   useEffect(() => {
-    // Check if device is mobile on mount
-    setIsMobile(isMobileDevice())
-    
-    // Initialize the audio element if not mobile and not already setup
-    if (!isMobileDevice() && !setupComplete) {
+    const handleResize = () => {
+      setIsMobile(isMobileDevice())
+    }
+
+    if (!isMobile && !setupComplete) {
       getOrCreateAudioElement()
     }
-  }, [])
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [isMobile])
 
   // Simple function to play sound with error handling
   const playShutterSound = () => {

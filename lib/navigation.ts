@@ -1,8 +1,5 @@
-const navigation = [
-  { name: "Home", href: "/" },
-  { name: "Showcase", href: "/showcase" },
-  { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
-]
+import { siteContent } from "@/content/site"
+
+const navigation = siteContent.navigation
 
 export default navigation

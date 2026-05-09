@@ -1,13 +1,13 @@
 "use client"
 
 import Image from "next/image"
-import { Mail, MapPin, Phone, Instagram, Twitter, Facebook, Youtube, Linkedin, Github } from "lucide-react"
+import { Mail } from "lucide-react"
 import { ContactForm } from "@/components/contact-form"
 import { motion } from "framer-motion"
 import FeaturedCollections from "@/components/featured-collections"
 import AnimatedButton from "@/components/animated-button"
 import { ArrowRight } from "lucide-react"
-
+import { contactContent } from "@/content/contact"
 
 export default function ContactPage() {
   return (
@@ -18,8 +18,8 @@ export default function ContactPage() {
        {/* Hero Section */}
       <section className="relative h-[50vh] w-full">
         <Image
-          src="/new zealand/new-zealand-17.jpg?height=800&width=1920"
-          alt="Contact Francesc Jimenez"
+          src={contactContent.hero.image}
+          alt={contactContent.hero.imageAlt}
           fill
           priority
           className="object-cover"
@@ -31,8 +31,8 @@ export default function ContactPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-4xl md:text-5xl text-white mb-4">Contact</h1>
-          <p className="text-white/90 text-lg max-w-2xl">Part of your vision</p>
+          <h1 className="text-4xl md:text-5xl text-white mb-4">{contactContent.hero.title}</h1>
+          <p className="text-white/90 text-lg max-w-2xl">{contactContent.hero.subtitle}</p>
         </motion.div>
       </section>
 
@@ -44,10 +44,8 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl md:text-5xl mb-6">Get in Touch</h1>
-            <p className="text-primary/60 mb-8 max-w-md">
-              I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
-            </p>
+            <h1 className="text-4xl md:text-5xl mb-6">{contactContent.intro.title}</h1>
+            <p className="text-primary/60 mb-8 max-w-md">{contactContent.intro.description}</p>
 
             <motion.div
               className="space-y-6 mb-8"
@@ -64,13 +62,7 @@ export default function ContactPage() {
                 },
               }}
             >
-              {[
-                {
-                  icon: <Mail className="text-primary mt-1" size={20} />,
-                  title: "Email",
-                  content: "contactar@francescjimenez.com",
-                },
-              ].map((item) => (
+              {contactContent.intro.contactItems.map((item) => (
                 <motion.div
                   key={item.title}
                   className="flex items-start gap-4"
@@ -79,7 +71,7 @@ export default function ContactPage() {
                     visible: { opacity: 1, y: 0 },
                   }}
                 >
-                  {item.icon}
+                  <Mail className="text-primary mt-1" size={20} />
                   <div>
                     <h3 className="font-medium">{item.title}</h3>
                     <p className="text-primary/60">{item.content}</p>
@@ -95,7 +87,7 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h2 className="text-2xl mb-6">Send a Message</h2>
+            <h2 className="text-2xl mb-6">{contactContent.intro.formTitle}</h2>
             <ContactForm />
           </motion.div>
         </div>
@@ -111,32 +103,11 @@ export default function ContactPage() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            Frequently Asked Questions
+            {contactContent.faq.title}
           </motion.h2>
 
           <div className="space-y-8">
-            {[
-              {
-                question: "Do you offer prints of your photographs?",
-                answer:
-                  "Yes, most of my photographs are available as fine art prints. You can inquire about specific images through the contact form.",
-              },
-              {
-                question: "Are you available for commercial photography?",
-                answer:
-                  "Absolutely. I work with brands and publications on commercial projects. Please reach out with details about your project for a custom quote.",
-              },
-              {
-                question: "Do you offer photography workshops?",
-                answer:
-                  "Yes, I regularly host workshops both in-person and online. Join my newsletter to be notified when new workshop dates are announced.",
-              },
-              {
-                question: "Can I license your photos for my website/publication?",
-                answer:
-                  "Yes, licensing options are available for both digital and print use. Please contact me with details about your intended use for licensing information.",
-              },
-            ].map((item, index) => (
+            {contactContent.faq.items.map((item, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -162,10 +133,8 @@ export default function ContactPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl mb-4">Featured Collections</h2>
-            <p className="text-primary max-w-2xl mx-auto">
-              Explore some of my most popular photography collections from around the world
-            </p>
+            <h2 className="text-3xl md:text-4xl mb-4">{contactContent.featuredCollections.title}</h2>
+            <p className="text-primary max-w-2xl mx-auto">{contactContent.featuredCollections.description}</p>
           </motion.div>
           <FeaturedCollections />
           <motion.div
@@ -175,8 +144,8 @@ export default function ContactPage() {
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <AnimatedButton href="/showcase" variant="primary" icon={<ArrowRight size={18} />}>
-              View All Collections
+            <AnimatedButton href={contactContent.featuredCollections.cta.href} variant="primary" icon={<ArrowRight size={18} />}>
+              {contactContent.featuredCollections.cta.label}
             </AnimatedButton>
           </motion.div>
         </div>

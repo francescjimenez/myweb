@@ -1,12 +1,12 @@
 "use client"
 
 import Link from "next/link"
-import { Instagram, Twitter, Facebook, Youtube, Linkedin, Github } from "lucide-react"
 import { ThemeToggle } from "./theme-toggle"
 import { motion } from "framer-motion"
 import Logo from "./logo"
 import useDisableRightClick from './useDisableRightClick'; // Adjust the import path as necessary
 import Image from 'next/image'
+import { siteContent } from "@/content/site"
 
 export default function Footer() {
   useDisableRightClick(); // Apply the hook to disable right-click on images
@@ -33,54 +33,22 @@ export default function Footer() {
             </Link>
           </div>
           <p className="text-muted-foreground max-w-md mb-6 max-w-xs">
-            Capturing moments and telling stories through the lens. Professional photography services for all your
-            needs.
+            {siteContent.footer.description}
           </p>
-          <div className="flex space-x-4 items-center">
-            <motion.a
-              href="https://instagram.com/desendoll"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-foreground hover:text-primary transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Instagram size={20} />
-              <span className="sr-only">Instagram</span>
-            </motion.a>
-            <motion.a
-              href="https://twitter.com/francescjimenez"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-foreground hover:text-primary transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Twitter size={20} />
-              <span className="sr-only">Twitter</span>
-            </motion.a>
-            <motion.a
-                href="https://youtube.com/desendoll"
+          <div className="flex flex-wrap gap-3 items-center text-sm text-muted-foreground">
+            {siteContent.footer.socialLinks.map((link) => (
+              <motion.a
+                key={link.label}
+                href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-foreground hover:text-primary transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
+                className="hover:text-primary transition-colors"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <Youtube size={20} />
-                <span className="sr-only">Youtube</span>
-            </motion.a>
-            <motion.a
-                href="https://linkedin.com/in/francescjimenez"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground hover:text-primary transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Linkedin size={20} />
-                <span className="sr-only">Linkedin</span>
-            </motion.a>
+                {link.label}
+              </motion.a>
+            ))}
             <ThemeToggle />
           </div>
         </motion.div>
@@ -93,21 +61,13 @@ export default function Footer() {
         >
           <h3 className="section-title text-2xl mb-4">Quick Links</h3>
           <ul className="space-y-2">
-            <li>
-              <Link href="/showcase" className="text-muted-foreground hover:text-primary transition-colors">
-                Showcase
-              </Link>
-            </li>
-            <li>
-              <Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">
-                About
-              </Link>
-            </li>
-            <li>
-              <Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">
-                Contact
-              </Link>
-            </li>
+            {siteContent.footer.quickLinks.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="text-muted-foreground hover:text-primary transition-colors">
+                  {link.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </motion.div>
 
@@ -120,10 +80,13 @@ export default function Footer() {
           <h3 className="section-title text-2xl mb-4">Contact</h3>
           <ul className="space-y-2 text-muted-foreground">
             <h4 className="text-primary">Email</h4>
-            <a href="mailto:contactar@francescjimenez.com"><li>contactar@francescjimenez.com</li></a> 
-            {/* <li>Phone: +1 (555) 123-4567</li> */}
+            <a href={`mailto:${siteContent.footer.email}`}><li>{siteContent.footer.email}</li></a>
             <h4 className="text-primary">Location</h4>
-            <li>Build with <Image src="/assets/heart.png" alt="❤️" width={22} height={22} className="inline"/> from Barcelona</li>
+            <li>
+              {siteContent.footer.locationPrefix}
+              <Image src="/assets/heart.png" alt="❤️" width={22} height={22} className="inline" />
+              {siteContent.footer.locationSuffix}
+            </li>
           </ul>
         </motion.div>
       </div>

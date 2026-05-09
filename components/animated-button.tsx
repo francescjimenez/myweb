@@ -6,7 +6,7 @@ import { useShutterSound } from "./sound-effects"
 import { cva } from "class-variance-authority"
 
 interface AnimatedButtonProps {
-  href: string
+  href?: string
   children: ReactNode
   icon?: ReactNode
   variant?: "primary" | "secondary" | "outline"
@@ -72,6 +72,15 @@ export default function AnimatedButton({
 
     // Call the original onClick if provided
     if (onClick) onClick()
+  }
+
+  if (!href) {
+    return (
+      <button type="button" className={`group ${baseStyles} ${variantStyles[variant]} ${className} glass-effect-button`} onClick={handleClick}>
+        <span>{children}</span>
+        {icon && <span className="btn-icon overflow-hidden">{icon}</span>}
+      </button>
+    )
   }
 
   return (

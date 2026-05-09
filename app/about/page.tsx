@@ -4,6 +4,7 @@ import Image from "next/image"
 import { ArrowRight, Camera, Globe, Award, Users } from "lucide-react"
 import { motion } from "framer-motion"
 import AnimatedButton from "@/components/animated-button"
+import { aboutContent } from "@/content/about"
 
 export default function AboutPage() {
   return (
@@ -11,8 +12,8 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="relative h-[50vh] w-full">
         <Image
-          src="/Iceland/iceland-7.jpg?height=800&width=1920"
-          alt="About Francesc Jimenez"
+          src={aboutContent.hero.image}
+          alt={aboutContent.hero.title}
           fill
           priority
           className="object-cover"
@@ -24,8 +25,8 @@ export default function AboutPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-4xl md:text-5xl text-white mb-4">About Me</h1>
-          <p className="text-white/90 text-lg max-w-2xl">The story behind the lens</p>
+          <h1 className="text-4xl md:text-5xl text-white mb-4">{aboutContent.hero.title}</h1>
+          <p className="text-white/90 text-lg max-w-2xl">{aboutContent.hero.subtitle}</p>
         </motion.div>
       </section>
       <div className="header-height"></div>
@@ -41,8 +42,8 @@ export default function AboutPage() {
             viewport={{ once: true }}
           >
             <Image
-              src="/Iceland/iceland-12.jpg?height=1200&width=800"
-              alt="Photographer portrait"
+              src={aboutContent.bio.image}
+              alt={aboutContent.bio.imageAlt}
               fill
               className="object-cover"
             />
@@ -53,32 +54,26 @@ export default function AboutPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl mb-6">The Journey</h2>
-            <p className="text-primary mb-4">
-              For more than a decade, I've worked in technology as a software engineer, but every journey I’ve taken has always included a camera by my side. From the skyscrapers of New York to remote trails in Peru, from diving into Indonesia’s oceans to meeting tribes and wildlife in Africa, my camera has been my way of experiencing the world.
-            </p>
-            <p className="text-primary mb-4">
-              What truly captivates me is the landscape and the art of composition. I’m drawn to slow, intentional photography: waiting for the sun to rise at the exact spot I planned, capturing the Milky Way as night falls, or shaping light with a flash to reveal hidden details.
-            </p>
-            <p className="text-primary mb-8">
-              Today, by sharing my portfolio, I want to go further, to connect with people, cultures, and emotions. Each image is more than a photograph; it is a story, an invitation to see the world through my lens.
-            </p>
+            <h2 className="text-3xl md:text-4xl mb-6">{aboutContent.bio.title}</h2>
+            <p className="text-primary mb-4">{aboutContent.bio.paragraphs[0]}</p>
+            <p className="text-primary mb-4">{aboutContent.bio.paragraphs[1]}</p>
+            <p className="text-primary mb-8">{aboutContent.bio.paragraphs[2]}</p>
             <div className="flex flex-wrap gap-4">
               <div className="flex items-center gap-2">
                 <Camera size={20} className="text-primary" />
-                <span className="text-primary">Sony <span>&#945;</span>7 IV</span>
+                <span className="text-primary">{aboutContent.bio.facts[0].label}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Globe size={20} className="text-primary" />
-                <span className="text-primary">30+ Countries</span>
+                <span className="text-primary">{aboutContent.bio.facts[1].label}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Award size={20} className="text-primary" />
-                <span className="text-primary">Award-winning</span>
+                <span className="text-primary">{aboutContent.bio.facts[2].label}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Users size={20} className="text-primary" />
-                <span className="text-primary">Workshops & Mentoring</span>
+                <span className="text-primary">{aboutContent.bio.facts[3].label}</span>
               </div>
             </div>
           </motion.div>
@@ -95,26 +90,10 @@ export default function AboutPage() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            My Philosophy
+            {aboutContent.philosophy.title}
           </motion.h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Patience",
-                description:
-                  "Great photography is never rushed. I embrace the wait for the perfect light, the stillness before the stars appear, and the silence that reveals the essence of a place.",
-              },
-              {
-                title: "Connection",
-                description:
-                  "Photography is more than landscapes; it's about people, cultures, and emotions. Each frame is a bridge that connects us to one another and to the world around us.",
-              },
-              {
-                title: "Wonder",
-                description:
-                  "I approach landscapes and cultures with a sense of awe and curiosity. Each frame is a celebration of the extraordinary beauty that surrounds us and a reminder to look closer.",
-              },
-            ].map((item, index) => (
+            {aboutContent.philosophy.items.map((item, index) => (
               <motion.div
                 key={item.title}
                 className="text-primary dark:text-primary-secondary bg-primary-secondary dark:bg-primary p-8 rounded-2xl shadow-sm"
@@ -205,12 +184,10 @@ export default function AboutPage() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-primary text-3xl md:text-4xl mb-6">Collaborate?</h2>
-          <p className="text-primary max-w-2xl mx-auto mb-8">
-            Whether you're looking for prints, licensing, or a custom photography project, feel free to get in touch.
-          </p>
-          <AnimatedButton href="/contact" variant="primary" icon={<ArrowRight size={18} />}>
-            Get in Touch
+          <h2 className="text-primary text-3xl md:text-4xl mb-6">{aboutContent.collaborate.title}</h2>
+          <p className="text-primary max-w-2xl mx-auto mb-8">{aboutContent.collaborate.description}</p>
+          <AnimatedButton href={aboutContent.collaborate.cta.href} variant="primary" icon={<ArrowRight size={18} />}>
+            {aboutContent.collaborate.cta.label}
           </AnimatedButton>
         </motion.div>
       </section>
