@@ -8,12 +8,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { ThemeToggle } from "./theme-toggle"
 import Logo from "./logo"
 
-const navigation = [
-  { name: "Home", href: "/" },
-  { name: "Showcase", href: "/showcase" },
-  { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
-]
+import navigation from "@/lib/navigation"
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -61,28 +56,27 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-2 left-2 right-2 z-50 transition-all duration-300 header-height ${
-        isScrolled ? "bg-background backdrop-blur-md shadow-sm" : "bg-transparent"
-      } ${!isVisible ? "-translate-y-[80px]" : "translate-y-0"}`}
+      className={`fixed top-2 left-2 right-2 z-50 transition-all duration-300 header-height bg-transparent"
+       ${!isVisible ? "-translate-y-[80px]" : "translate-y-0"}`}
     >
       <div className="max-w-8xl mx-auto px-4 sm:px-6 h-full">
         <div className="flex justify-between items-center h-full">
           {/* Logo and Brand */}
           <div className="flex-shrink-0 flex items-center gap-3">
-            {/* <Logo /> */}
             <Link
               href="/"
-              className={`font-old-london p-3 text-2xl  duration-300w-10 h-10 flex items-center justify-center rounded-full bg-background/90 text-primary transition-colors ${
+              className={`font-old-london p-3 text-2xl  duration-300w-10 h-10 flex items-center justify-center text-primary transition-colors ${
                 isScrolled || pathname !== "/" ? "text-primary" : "text-primary"
               }`}
             >
-              X100
+              <Logo size={55} />
             </Link>
           </div>
         
 
           {/* Desktop Navigation - Centered */}
-          <nav className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-8 items-center p-3 text-2xl  duration-300w-10 h-10 flex items-center justify-center rounded-full bg-background/90 text-primary transition-colors">
+          <nav className={`hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-8 items-center p-3 text-2xl  duration-300w-10 h-10 flex items-center justify-center rounded-full bg-background/90 text-primary transition-colors
+            ${isScrolled ? "" : "" }`}>
             {navigation.map((item) => (
               <Link
                 key={item.name}

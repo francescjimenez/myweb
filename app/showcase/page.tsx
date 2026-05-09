@@ -6,6 +6,7 @@ import CollectionGrid from "@/components/collection-grid"
 import TagFilters from "@/components/tag-filters"
 import Loading from "@/components/loading"
 import { motion } from "framer-motion"
+import { showcaseContent } from "@/content/showcase"
 
 export default function ShowcasePage() {
   return (
@@ -16,8 +17,8 @@ export default function ShowcasePage() {
       {/* Hero Section */}
       <section className="relative h-[50vh] w-full">
         <Image
-          src="/Morocco/morocco-11.webp?height=800&width=1920"
-          alt="Photography collections showcase"
+          src={showcaseContent.hero.image}
+          alt={showcaseContent.hero.imageAlt}
           fill
           priority
           className="object-cover"
@@ -29,10 +30,8 @@ export default function ShowcasePage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-4xl md:text-5xl text-white mb-4">Photography Collections</h1>
-          <p className="text-white/90 text-lg max-w-2xl">
-            Explore my diverse portfolio of photography from around the world
-          </p>
+          <h1 className="text-4xl md:text-5xl text-white mb-4">{showcaseContent.hero.title}</h1>
+          <p className="text-white/90 text-lg max-w-2xl">{showcaseContent.hero.subtitle}</p>
         </motion.div>
       </section>
 

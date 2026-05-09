@@ -4,11 +4,10 @@ import { ArrowRight } from "lucide-react"
 import FeaturedCollections from "@/components/featured-collections"
 import AnimatedButton from "@/components/animated-button"
 import { motion } from "framer-motion"
-import HeroSlider from "@/components/hero-slider"
 import Image from "next/image"
 import { HeroGalleryScroll } from "@/components/hero-gallery-scroll"
-import { DynamicFrame } from "@/components/dynamic-frame"
 import { LayoutGridDemo } from "@/components/layout-image-grid"
+import { homeContent } from "@/content/home"
 
 export default function Home() {
   return (
@@ -31,16 +30,11 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl mb-6">The Art of Visual Storytelling</h2>
-            <p className="text-primary-secondary mb-6">
-              Every photograph tells a story, captures an emotion, and preserves a moment in time. My work focuses on
-              finding beauty in both grand landscapes and subtle details.
-            </p>
-            <p className="text-primary-secondary mb-8">
-              Explore my collections from around the world, each with its own unique perspective and narrative.
-            </p>
-            <AnimatedButton href="/about" variant="outline" icon={<ArrowRight size={16} />}>
-              Learn More About The Journey
+            <h2 className="text-3xl md:text-4xl mb-6">{homeContent.introduction.title}</h2>
+            <p className="text-primary-secondary mb-6">{homeContent.introduction.paragraphs[0]}</p>
+            <p className="text-primary-secondary mb-8">{homeContent.introduction.paragraphs[1]}</p>
+            <AnimatedButton href={homeContent.introduction.cta.href} variant="outline" icon={<ArrowRight size={16} />}>
+              {homeContent.introduction.cta.label}
             </AnimatedButton>
           </motion.div>
           <motion.div
@@ -51,8 +45,8 @@ export default function Home() {
             viewport={{ once: true }}
           >
             <Image
-              src="/Morocco/morocco-9.webp?height=1000&width=800"
-              alt="Photographer at work"
+              src={homeContent.introduction.image.src}
+              alt={homeContent.introduction.image.alt}
               fill
               className="object-cover"
             />
@@ -75,12 +69,10 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-primary text-3xl md:text-4xl mb-6">Collaborate?</h2>
-          <p className="text-primary max-w-2xl mx-auto mb-8">
-            Whether you're looking for prints, licensing, or a custom photography project, feel free to get in touch.
-          </p>
-          <AnimatedButton href="/contact" variant="primary" icon={<ArrowRight size={18} />}>
-            Get in Touch
+          <h2 className="text-primary text-3xl md:text-4xl mb-6">{homeContent.collaborate.title}</h2>
+          <p className="text-primary max-w-2xl mx-auto mb-8">{homeContent.collaborate.description}</p>
+          <AnimatedButton href={homeContent.collaborate.cta.href} variant="primary" icon={<ArrowRight size={18} />}>
+            {homeContent.collaborate.cta.label}
           </AnimatedButton>
         </motion.div>
       </section>
@@ -95,10 +87,8 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-primary text-3xl md:text-4xl mb-4">Featured Collections</h2>
-            <p className="text-primary max-w-2xl mx-auto">
-              Explore some of my most popular photography collections from around the world
-            </p>
+            <h2 className="text-primary text-3xl md:text-4xl mb-4">{homeContent.featuredCollections.title}</h2>
+            <p className="text-primary max-w-2xl mx-auto">{homeContent.featuredCollections.description}</p>
           </motion.div>
           <FeaturedCollections />
           <motion.div
@@ -108,8 +98,8 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <AnimatedButton href="/showcase" variant="primary" icon={<ArrowRight size={18} />}>
-              View All Collections
+            <AnimatedButton href={homeContent.featuredCollections.cta.href} variant="primary" icon={<ArrowRight size={18} />}>
+              {homeContent.featuredCollections.cta.label}
             </AnimatedButton>
           </motion.div>
         </div>

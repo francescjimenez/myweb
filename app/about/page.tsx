@@ -4,6 +4,7 @@ import Image from "next/image"
 import { ArrowRight, Camera, Globe, Award, Users } from "lucide-react"
 import { motion } from "framer-motion"
 import AnimatedButton from "@/components/animated-button"
+import { aboutContent } from "@/content/about"
 
 export default function AboutPage() {
   return (
@@ -11,8 +12,8 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="relative h-[50vh] w-full">
         <Image
-          src="/Iceland/iceland-7.jpg?height=800&width=1920"
-          alt="About X100"
+          src={aboutContent.hero.image}
+          alt={aboutContent.hero.title}
           fill
           priority
           className="object-cover"
@@ -24,8 +25,8 @@ export default function AboutPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-4xl md:text-5xl text-white mb-4">About Me</h1>
-          <p className="text-white/90 text-lg max-w-2xl">The story behind the lens</p>
+          <h1 className="text-4xl md:text-5xl text-white mb-4">{aboutContent.hero.title}</h1>
+          <p className="text-white/90 text-lg max-w-2xl">{aboutContent.hero.subtitle}</p>
         </motion.div>
       </section>
       <div className="header-height"></div>
@@ -41,8 +42,8 @@ export default function AboutPage() {
             viewport={{ once: true }}
           >
             <Image
-              src="/Iceland/iceland-12.jpg?height=1200&width=800"
-              alt="Photographer portrait"
+              src={aboutContent.bio.image}
+              alt={aboutContent.bio.imageAlt}
               fill
               className="object-cover"
             />
@@ -53,36 +54,26 @@ export default function AboutPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl mb-6">The Journey</h2>
-            <p className="text-primary mb-4">
-              I'm a professional photographer with over 10 years of experience capturing moments around the world. My
-              passion for photography began during a backpacking trip through Southeast Asia, where I discovered the
-              power of visual storytelling.
-            </p>
-            <p className="text-primary mb-4">
-              Since then, I've traveled to over 30 countries, documenting landscapes, cultures, and urban environments.
-              My work has been featured in publications like National Geographic, Condé Nast Traveler, and Vogue.
-            </p>
-            <p className="text-primary mb-6">
-              I believe that photography has the power to connect people across cultures and inspire a deeper
-              appreciation for our world. Each image I create aims to tell a story and evoke emotion.
-            </p>
+            <h2 className="text-3xl md:text-4xl mb-6">{aboutContent.bio.title}</h2>
+            <p className="text-primary mb-4">{aboutContent.bio.paragraphs[0]}</p>
+            <p className="text-primary mb-4">{aboutContent.bio.paragraphs[1]}</p>
+            <p className="text-primary mb-8">{aboutContent.bio.paragraphs[2]}</p>
             <div className="flex flex-wrap gap-4">
               <div className="flex items-center gap-2">
                 <Camera size={20} className="text-primary" />
-                <span className="text-primary">Fujifilm x100vi & Leica M10</span>
+                <span className="text-primary">{aboutContent.bio.facts[0].label}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Globe size={20} className="text-primary" />
-                <span className="text-primary">30+ Countries</span>
+                <span className="text-primary">{aboutContent.bio.facts[1].label}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Award size={20} className="text-primary" />
-                <span className="text-primary">Award-winning</span>
+                <span className="text-primary">{aboutContent.bio.facts[2].label}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Users size={20} className="text-primary" />
-                <span className="text-primary">Workshops & Mentoring</span>
+                <span className="text-primary">{aboutContent.bio.facts[3].label}</span>
               </div>
             </div>
           </motion.div>
@@ -99,26 +90,10 @@ export default function AboutPage() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            My Philosophy
+            {aboutContent.philosophy.title}
           </motion.h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Authenticity",
-                description:
-                  "I believe in capturing authentic moments that tell real stories. My approach focuses on finding beauty in truth rather than manufacturing perfect scenes.",
-              },
-              {
-                title: "Connection",
-                description:
-                  "Photography creates connections - between viewer and subject, between cultures, and between people. I strive to foster these connections through my work.",
-              },
-              {
-                title: "Respect",
-                description:
-                  "I approach every environment and subject with deep respect. This means respecting cultures, natural spaces, and the stories I'm privileged to capture.",
-              },
-            ].map((item, index) => (
+            {aboutContent.philosophy.items.map((item, index) => (
               <motion.div
                 key={item.title}
                 className="text-primary dark:text-primary-secondary bg-primary-secondary dark:bg-primary p-8 rounded-2xl shadow-sm"
@@ -136,7 +111,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Timeline */}
+      {/* Timeline
       <section className="py-16 px-4 md:px-8 max-w-5xl mx-auto">
         <motion.h2
           className="text-3xl md:text-4xl mb-12 text-center"
@@ -199,7 +174,7 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
-
+      */}
       {/* Call to Action */}
       <section className="min-w-[90%] justify-self-center mr-4 ml-4 py-20 my-20 px-4 md:px-8 rounded-3xl border-[1px] border-border">
         <motion.div
@@ -209,12 +184,10 @@ export default function AboutPage() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-primary text-3xl md:text-4xl mb-6">Collaborate?</h2>
-          <p className="text-primary max-w-2xl mx-auto mb-8">
-            Whether you're looking for prints, licensing, or a custom photography project, feel free to get in touch.
-          </p>
-          <AnimatedButton href="/contact" variant="primary" icon={<ArrowRight size={18} />}>
-            Get in Touch
+          <h2 className="text-primary text-3xl md:text-4xl mb-6">{aboutContent.collaborate.title}</h2>
+          <p className="text-primary max-w-2xl mx-auto mb-8">{aboutContent.collaborate.description}</p>
+          <AnimatedButton href={aboutContent.collaborate.cta.href} variant="primary" icon={<ArrowRight size={18} />}>
+            {aboutContent.collaborate.cta.label}
           </AnimatedButton>
         </motion.div>
       </section>

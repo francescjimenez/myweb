@@ -1,94 +1,24 @@
 "use client";
-import React, { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
+import { homeContent } from "@/content/home";
 
 type Card = {
   id: number;
-  content: React.ReactNode;
+  title: string;
+  description: string;
   className: string;
   thumbnail: string;
 };
 
-const SkeletonOne = () => {
-  return (
-    <div>
-      <p className="font-oldLondon font-bold md:text-4xl text-xl text-white">
-        Tokyo Nights
-      </p>
-      <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-        Exploring the vibrant nightlife and neon-lit streets of Tokyo's urban landscape.
-      </p>
-    </div>
-  );
-};
-
-const SkeletonTwo = () => {
-  return (
-    <div>
-      <p className="font-oldLondon font-bold md:text-4xl text-xl text-white">
-        Urban Portraits
-      </p>
-      <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-        Capturing the essence of city life through intimate street photography and urban portraiture.
-      </p>
-    </div>
-  );
-};
-
-const SkeletonThree = () => {
-  return (
-    <div>
-      <p className="font-oldLondon font-bold md:text-4xl text-xl text-white">
-        New Zealand
-      </p>
-      <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-        Documenting the raw beauty and untamed wilderness of New Zealand's landscapes.
-      </p>
-    </div>
-  );
-};
-
-const SkeletonFour = () => {
-  return (
-    <div>
-      <p className="font-oldLondon font-bold md:text-4xl text-xl text-white">
-        Iceland
-      </p>
-      <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-        Capturing the ethereal beauty of Iceland's dramatic landscapes and natural wonders.
-      </p>
-    </div>
-  );
-};
-
-const cards = [
-  {
-    id: 1,
-    content: <SkeletonOne />,
-    className: "md:col-span-2",
-    thumbnail: "/Tokyo/tokyo-22.webp",
-  },
-  {
-    id: 2,
-    content: <SkeletonTwo />,
-    className: "col-span-1",
-    thumbnail: "/Urban Portraits/urban-portraits-1.jpg",
-  },
-  {
-    id: 3,
-    content: <SkeletonThree />,
-    className: "col-span-1",
-    thumbnail: "/new zealand/new-zealand-18.jpg",
-  },
-  {
-    id: 4,
-    content: <SkeletonFour />,
-    className: "md:col-span-2",
-    thumbnail: "/Iceland/iceland-1.jpg",
-  },
-];
+const cards: Card[] = homeContent.featuredGrid.map((card) => ({
+  id: card.id,
+  title: card.title,
+  description: card.description,
+  className: card.className,
+  thumbnail: card.thumbnail,
+}));
 
 export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
   const [selected, setSelected] = useState<Card | null>(null);
@@ -114,10 +44,10 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
               card.className,
               "relative overflow-hidden",
               selected?.id === card.id
-                ? "rounded-3xl cursor-pointer absolute inset-0 h-1/2 w-full md:w-1/2 m-auto z-50 flex justify-center items-center flex-wrap flex-col"
+                ? "rounded-ls cursor-pointer absolute inset-0 h-1/2 w-full md:w-1/2 m-auto z-50 flex justify-center items-center flex-wrap flex-col"
                 : lastSelected?.id === card.id
-                ? "z-40 bg-white rounded-3xl h-full w-full"
-                : "bg-white rounded-3xl h-full w-full"
+                ? "z-40 bg-white rounded-ls h-full w-full"
+                : "bg-white rounded-ls h-full w-full"
             )}
             layoutId={`card-${card.id}`}
           >
@@ -155,7 +85,7 @@ const ImageComponent = ({ card }: { card: Card }) => {
 
 const SelectedCard = ({ selected }: { selected: Card | null }) => {
   return (
-    <div className="bg-transparent h-full w-full flex flex-col justify-end rounded-3xl shadow-2xl relative z-[60]">
+    <div className="bg-transparent h-full w-full flex flex-col justify-end rounded-lg shadow-2xl relative z-[60]">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.6 }}
@@ -169,7 +99,12 @@ const SelectedCard = ({ selected }: { selected: Card | null }) => {
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className="relative px-8 pb-4 z-[70]"
       >
-        {selected?.content}
+        {selected && (
+          <div>
+            <p className="font-oldLondon font-bold md:text-4xl text-xl text-white">{selected.title}</p>
+            <p className="font-normal text-base my-4 max-w-lg text-neutral-200">{selected.description}</p>
+          </div>
+        )}
       </motion.div>
     </div>
   );

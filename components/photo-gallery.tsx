@@ -85,22 +85,6 @@ export function PhotoGallery({ photos, className }: PhotoGalleryProps) {
     setError('Failed to load some images. Please try refreshing the page.')
   }, [])
 
-  if (error) {
-    return (
-      <div className="flex items-center justify-center p-8 text-red-500">
-        <p>{error}</p>
-      </div>
-    )
-  }
-
-  if (validPhotos.length === 0) {
-    return (
-      <div className="flex items-center justify-center p-8 text-gray-500">
-        <p>No photos available</p>
-      </div>
-    )
-  }
-
   // Format photos for the PhotoAlbum component
   const photoAlbumPhotos = validPhotos.map((photo, index) => {
     const metadata = {
@@ -172,8 +156,8 @@ export function PhotoGallery({ photos, className }: PhotoGalleryProps) {
     }
   }, [currentPhotoIndex, lightboxOpen])
 
-  // Get the current photo safely
-  const currentPhoto = validPhotos[currentPhotoIndex] || validPhotos[0]
+  const hasValidPhotos = validPhotos.length > 0
+  const currentPhoto = validPhotos[currentPhotoIndex] || validPhotos[0] || null
 
   // Handle click on the lightbox background for navigation
   const handleLightboxClick = (e: React.MouseEvent) => {
@@ -190,6 +174,22 @@ export function PhotoGallery({ photos, className }: PhotoGalleryProps) {
     } else if (x > (width * 2) / 3) {
       goToNext()
     }
+  }
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center p-8 text-red-500">
+        <p>{error}</p>
+      </div>
+    )
+  }
+
+  if (!hasValidPhotos || !currentPhoto) {
+    return (
+      <div className="flex items-center justify-center p-8 text-gray-500">
+        <p>No photos available</p>
+      </div>
+    )
   }
 
   return (
@@ -408,7 +408,7 @@ export function PhotoGallery({ photos, className }: PhotoGalleryProps) {
                     <div className="flex items-center gap-2 text-sm text-white/70">
                       <Camera size={14} />
                       {/* <span>{currentPhoto.metadata.camera}</span> */}
-                      <span>X100VI</span>
+                      <span>Francesc Jimenez</span>
                       {currentPhoto.metadata.focalLength && <span>| {currentPhoto.metadata.focalLength}</span>}
                       <span>|</span>
                       {currentPhoto.metadata.aperture && <span>| {currentPhoto.metadata.aperture}</span>}

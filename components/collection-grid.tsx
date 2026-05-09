@@ -1,6 +1,5 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
@@ -16,30 +15,22 @@ export default function CollectionGrid() {
   const tagFilter = searchParams.get("tag") || ""
   const { playShutterSound } = useShutterSound()
 
-  const [filteredCollections, setFilteredCollections] = useState(collections)
+  let filteredCollections = collections
 
-  useEffect(() => {
-    let filtered = collections
+  if (searchQuery) {
+    filteredCollections = filteredCollections.filter(
+      (collection) =>
+        collection.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        collection.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        collection.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase())),
+    )
+  }
 
-    // Apply search filter
-    if (searchQuery) {
-      filtered = filtered.filter(
-        (collection) =>
-          collection.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          collection.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          collection.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase())),
-      )
-    }
-
-    // Apply tag filter
-    if (tagFilter) {
-      filtered = filtered.filter((collection) =>
-        collection.tags.some((tag) => tag.toLowerCase() === tagFilter.toLowerCase()),
-      )
-    }
-
-    setFilteredCollections(filtered)
-  }, [collections, searchQuery, tagFilter])
+  if (tagFilter) {
+    filteredCollections = filteredCollections.filter((collection) =>
+      collection.tags.some((tag) => tag.toLowerCase() === tagFilter.toLowerCase()),
+    )
+  }
 
   if (filteredCollections.length === 0) {
     return (
